@@ -1,13 +1,16 @@
 import { navLinks, profile } from '../../data/site'
+import { useSectionHref } from '../../hooks/useSectionHref'
 import { cx } from '../../utils/cx'
 
 export function SiteHeader() {
+  const sectionHref = useSectionHref()
+
   return (
     <header className="sticky top-0 z-50 border-b border-ink/12 bg-bone">
       <div className="mx-auto flex h-(--header-height) max-w-[1180px] items-end justify-between gap-4 px-6 pb-3">
         <div className="flex min-w-0 items-baseline gap-4">
           <a
-            href="#top"
+            href={sectionHref('#top')}
             aria-label={`${profile.name} — home`}
             className="sig-mark -mb-[3px] font-script text-[26px] leading-none font-bold tracking-[0.01em] text-ember sm:text-[32px]"
           >
@@ -25,7 +28,7 @@ export function SiteHeader() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={sectionHref(link.href)}
               className={cx('navlink', link.accent && 'text-ember')}
             >
               {link.label}

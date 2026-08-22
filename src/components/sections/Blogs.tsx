@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { blogPosts, blogSection } from '../../data/site'
 import type { BlogPost } from '../../types/site'
 import { cx } from '../../utils/cx'
@@ -25,8 +26,8 @@ function StatusBadge({ status }: Pick<BlogPost, 'status'>) {
 
 function BlogCard({ post, index }: { post: BlogPost; index: number }) {
   return (
-    <a
-      href={post.href}
+    <Link
+      to={post.href}
       data-reveal
       className="rowlink relative block h-full"
       style={{ transitionDelay: `${index * 80}ms` }}
@@ -54,7 +55,7 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
           <CardArrow />
         </div>
       </PaperCard>
-    </a>
+    </Link>
   )
 }
 

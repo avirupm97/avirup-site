@@ -1,3 +1,4 @@
+import { ROUTES } from '../constants/routes'
 import type {
   BlogPost,
   CareerMilestone,
@@ -50,9 +51,9 @@ export const workDomains: WorkDomain[] = [
     title: 'Agentic AI workflows',
     description: 'I design how agents ask, decide, and prove they actually worked.',
     links: [
-      { label: 'Improve UI agent skill', href: '#work' },
-      { label: 'Context Graphs', href: '#work' },
-      { label: 'Design variation skill', href: '#work' },
+      { label: 'Improve UI agent skill', href: ROUTES.wip },
+      { label: 'Context Graphs', href: ROUTES.wip },
+      { label: 'Design variation skill', href: ROUTES.wip },
     ],
     tornEdge: 'torn-a',
     tilt: -1.5,
@@ -64,9 +65,9 @@ export const workDomains: WorkDomain[] = [
     description:
       'Activation, trial conversion, credit economics and retention — measured honestly.',
     links: [
-      { label: 'Subscription cancellation', href: '#work' },
-      { label: 'Visitor → activation funnel', href: '#work' },
-      { label: 'Trial conversion', href: '#work' },
+      { label: 'Subscription cancellation', href: ROUTES.wip },
+      { label: 'Visitor → activation funnel', href: ROUTES.wip },
+      { label: 'Trial conversion', href: ROUTES.wip },
     ],
     tornEdge: 'torn-b',
     tilt: 1.6,
@@ -79,8 +80,8 @@ export const workDomains: WorkDomain[] = [
     description:
       'I turn subjective design intent into structured product surfaces people can steer.',
     links: [
-      { label: 'Improve UI agent skill', href: '#work' },
-      { label: 'Design variation skill', href: '#work' },
+      { label: 'Improve UI agent skill', href: ROUTES.wip },
+      { label: 'Design variation skill', href: ROUTES.wip },
     ],
     tornEdge: 'torn-c',
     tilt: -0.9,
@@ -209,7 +210,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "The eval you can run in an afternoon beats the dashboard you'll ship next quarter.",
     status: 'Published',
-    href: '#notes',
+    href: ROUTES.wip,
     tilt: -0.7,
     tape: { side: 'left', offset: '18%', rotate: -4 },
   },
@@ -220,7 +221,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "People don't cancel because it costs too much. They cancel because week three is empty.",
     status: 'Drafting',
-    href: '#notes',
+    href: ROUTES.wip,
     tilt: 0.8,
     tape: { side: 'right', offset: '20%', rotate: 4 },
   },
@@ -231,7 +232,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'Give people dials, not a blank prompt — then let the agent argue for a direction.',
     status: 'Drafting',
-    href: '#notes',
+    href: ROUTES.wip,
     tilt: -0.5,
     tape: { side: 'left', offset: '24%', rotate: -3 },
   },
@@ -242,11 +243,22 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'Nobody wants to manage a graph. They want the agent to already know.',
     status: 'Drafting',
-    href: '#notes',
+    href: ROUTES.wip,
     tilt: 1,
     tape: { side: 'right', offset: '16%', rotate: 5 },
   },
 ]
+
+export const wipPage = {
+  eyebrow: 'Work in progress',
+  title: 'This one’s still on my desk.',
+  paragraphs: [
+    'I’m writing this piece up properly — the decisions, the dead ends, and the numbers that actually moved. It isn’t ready to read yet.',
+    'Everything else on the site is live, so do have a wander. Or email me and I’ll happily talk you through this one before it’s published.',
+  ],
+  backLabel: 'Back to the site',
+  contactLabel: 'Email me about it',
+} as const
 
 export const contactSection = {
   title: "Let's talk about the AI product you're building.",

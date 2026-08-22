@@ -1,11 +1,13 @@
 import { useRef } from 'react'
 import { contactLinks, contactSection, profile } from '../../data/site'
 import { useDrawPaths } from '../../hooks/useDrawPaths'
+import { useSectionHref } from '../../hooks/useSectionHref'
 import { ContactGlyph, ReturnArrow } from '../icons/SketchIcons'
 import { Grain } from '../ui/Grain'
 
 export function SiteFooter() {
   const footerRef = useRef<HTMLElement>(null)
+  const sectionHref = useSectionHref()
   useDrawPaths(footerRef, { trigger: 'view', duration: 0.9, stagger: 0 })
 
   return (
@@ -42,7 +44,10 @@ export function SiteFooter() {
 
         <div className="mt-16 flex items-center justify-between gap-6 border-t border-ink/12 pt-5 text-[12px] text-ink-faint">
           <span className="num">{profile.copyright}</span>
-          <a href="#top" className="navlink inline-flex items-center gap-3 text-ink">
+          <a
+            href={sectionHref('#top')}
+            className="navlink inline-flex items-center gap-3 text-ink"
+          >
             <ReturnArrow />
             {contactSection.backToTop}
           </a>

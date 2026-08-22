@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { workDomains, workSection } from '../../data/site'
 import type { WorkDomain } from '../../types/site'
 import { cx } from '../../utils/cx'
@@ -35,13 +36,13 @@ function DomainCard({ domain, index }: { domain: WorkDomain; index: number }) {
                 linkIndex === domain.links.length - 1 && 'border-b',
               )}
             >
-              <a
-                href={link.href}
+              <Link
+                to={link.href}
                 className="rowlink flex items-center justify-between gap-3 py-3 text-ember"
               >
                 <span className="text-ink">{link.label}</span>
                 <RowArrow />
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
