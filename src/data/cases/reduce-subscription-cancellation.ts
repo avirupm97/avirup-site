@@ -35,23 +35,6 @@ export const reduceSubscriptionCancellation: CaseStudy = {
           kind: 'paragraph',
           text: 'Reduce subscription cancellation rate by diagnosing cancellation reasons, improving credit efficiency, and creating retention paths for users who were about to cancel.',
         },
-        {
-          kind: 'list',
-          items: [
-            {
-              lead: 'Starting point',
-              text: 'Cancellation was running higher than healthy monthly benchmark for multiple months.',
-            },
-            {
-              lead: 'Target',
-              text: 'Bring cancellation back down to benchmark.',
-            },
-            {
-              lead: 'Where it stands',
-              text: 'Cancellation came down by roughly a third within three weeks, and the initiatives still in flight should close most of the remaining gap.',
-            },
-          ],
-        },
       ],
     },
     {
@@ -222,13 +205,6 @@ export const reduceSubscriptionCancellation: CaseStudy = {
             {
               kind: 'paragraph',
               text: 'If users did not choose the downgrade option, we offered the ability to pause their subscription. This gave users a way to temporarily stop usage instead of fully cancelling, preserving the relationship and creating an opportunity to reactivate them later.',
-            },
-            {
-              kind: 'note',
-              title: 'note',
-              items: [
-                'Pause is not framed as a way to keep users out of the cancelled bucket — that would be metric manipulation.',
-              ],
             },
           ],
         },
