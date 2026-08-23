@@ -17,32 +17,39 @@ export function SiteFooter() {
       className="relative w-full overflow-hidden pt-24 pb-10 scroll-mt-(--header-height)"
     >
       <Grain />
-      <div className="relative z-[4] mx-auto max-w-[1000px] px-6 md:px-8">
-        <h2
-          data-reveal
-          className="max-w-[24ch] font-display text-[clamp(32px,4.5vw,44px)] leading-[1.05] font-bold"
-        >
-          {contactSection.title}
-        </h2>
+      <div className="shell relative z-[4]">
+        {/* the shell runs the full page width, so the sign-off sits in its own
+            centred column rather than hugging the left edge */}
+        <div className="mx-auto max-w-[780px] text-center">
+          <h2
+            data-reveal
+            className="mx-auto max-w-[24ch] font-display text-[clamp(32px,4.5vw,44px)] leading-[1.05] font-bold text-balance"
+          >
+            {contactSection.title}
+          </h2>
 
-        <ul data-reveal className="mt-10 space-y-4 text-[15px]">
-          {contactLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="navlink inline-flex items-center gap-4"
-                {...(link.href.startsWith('http')
-                  ? { target: '_blank', rel: 'noreferrer noopener' }
-                  : {})}
-              >
-                <ContactGlyph icon={link.icon} />
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+          <ul
+            data-reveal
+            className="mt-10 flex flex-col items-center gap-4 text-[15px] sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-10"
+          >
+            {contactLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="navlink inline-flex items-center gap-4"
+                  {...(link.href.startsWith('http')
+                    ? { target: '_blank', rel: 'noreferrer noopener' }
+                    : {})}
+                >
+                  <ContactGlyph icon={link.icon} />
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <div className="mt-16 flex items-center justify-between gap-6 border-t border-ink/12 pt-5 text-[12px] text-ink-faint">
+        <div className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-ink/12 pt-5 text-[12px] text-ink-faint sm:flex-row">
           <span className="num">{profile.copyright}</span>
           <a
             href={sectionHref('#top')}

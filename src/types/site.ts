@@ -5,9 +5,12 @@ export interface NavLink {
   accent?: boolean
 }
 
+export type WorkLinkStatus = 'live' | 'drafting'
+
 export interface WorkLink {
   label: string
   href: string
+  status: WorkLinkStatus
 }
 
 export type TornEdge = 'torn-a' | 'torn-b' | 'torn-c'
@@ -26,12 +29,6 @@ export interface WorkDomain {
   title: string
   description: string
   links: WorkLink[]
-  tornEdge: TornEdge
-  /** resting rotation of the card in degrees */
-  tilt: number
-  tape: TapePlacement
-  /** pushes the middle card down so the row reads as a scatter */
-  offsetTop?: boolean
 }
 
 export interface CareerAnnotation {
@@ -47,14 +44,17 @@ export interface CareerMilestone {
   /** each entry renders on its own line inside the blob */
   lines: string[]
   date?: string
-  /** absolute position of the date label on the desktop map */
+  /** position of the date label in the map's design space (`careerSection.mapSize`) */
   datePosition?: { left: number; top: number }
   annotation?: CareerAnnotation
   /** the current role is filled instead of outlined */
   current?: boolean
   /** organic border-radius that gives the blob its hand-drawn feel */
   radius: string
-  /** absolute placement on the 1176 x 520 desktop map */
+  /**
+   * placement in the map's design space (`careerSection.mapSize`). The map
+   * renders fluid, so these are converted to percentages at render time.
+   */
   box: { left: number; top: number; width: number; height: number }
 }
 

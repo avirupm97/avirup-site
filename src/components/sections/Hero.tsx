@@ -20,7 +20,7 @@ export function Hero() {
     >
       <Grain />
 
-      <div className="relative z-[4] mx-auto grid max-w-[1340px] items-center gap-12 px-6 pt-16 pb-24 md:px-14 lg:min-h-[calc(100vh-var(--header-height))] lg:grid-cols-[60%_40%] lg:gap-8">
+      <div className="shell relative z-[4] grid items-center gap-12 pt-16 pb-24 lg:min-h-[calc(100vh-var(--header-height))] lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:gap-16">
         <div className="relative">
           <div
             aria-hidden="true"

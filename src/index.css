@@ -54,6 +54,15 @@
   --shadow-paper-lift: 0 18px 34px rgba(20, 20, 19, 0.14);
 
   --header-height: 68px;
+
+  /* one shared page shell: every section aligns to these edges.
+     the gutter only grows on large screens, so phones stay near-full-bleed. */
+  --shell-max: 1600px;
+  --shell-gutter: clamp(20px, 4vw, 80px);
+  /* long-form reading column (case studies, wip) — tighter gutter so the
+     measure stays readable instead of being eaten by page margin */
+  --shell-prose-max: 800px;
+  --shell-prose-gutter: clamp(20px, 4vw, 40px);
 }
 
 /* ------------------------------------------------------------------ *
@@ -105,6 +114,26 @@
       scroll-behavior: auto;
     }
   }
+}
+
+/* ------------------------------------------------------------------ *
+ * Layout utilities
+ * ------------------------------------------------------------------ */
+
+/* the single container every full-width section uses */
+@utility shell {
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: var(--shell-gutter);
+}
+
+/* same gutters, narrowed to a comfortable reading measure */
+@utility shell-prose {
+  width: 100%;
+  max-width: var(--shell-prose-max);
+  margin-inline: auto;
+  padding-inline: var(--shell-prose-gutter);
 }
 
 /* ------------------------------------------------------------------ *
@@ -208,9 +237,77 @@
   .rowlink .rowarrow {
     transition: transform 0.3s ease;
   }
+
+  /* live work-row: ink underline wipes in from the left */
+  .live-row .row-underline {
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    left: 0;
+    height: 1px;
+    background: var(--color-ink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s ease;
+  }
+  .live-row:hover .row-underline,
+  .live-row:focus-visible .row-underline {
+    transform: scaleX(1);
+  }
+
+  /* full-bleed mobile menu that sits under the sticky header */
+  .mobile-nav {
+    animation: mobile-nav-in 0.28s ease;
+  }
+  @keyframes mobile-nav-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
   .rowlink:hover .rowarrow,
   .rowlink:focus-visible .rowarrow {
     transform: translateX(6px);
+  }
+
+  /* long-form reading column: newsletter rhythm and measure */
+  .case-prose {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--color-ink-muted);
+    max-width: 66ch;
+  }
+  .case-prose > * + * {
+    margin-top: 1.35rem;
+  }
+  @media (min-width: 640px) {
+    .case-prose {
+      font-size: 18.5px;
+    }
+  }
+
+  /* hand-drawn bullet for case-study lists */
+  .case-bullet {
+    position: relative;
+    padding-left: 1.15rem;
+  }
+  .case-bullet::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 8px;
+    height: 2px;
+    background: var(--color-ember);
+    border-radius: 2px;
+  }
+
+  /* pulled-out product insight */
+  .case-quote {
+    border-left: 2px solid var(--color-ember);
+    padding: 0.15rem 0 0.15rem 1.15rem;
   }
 
   /* scroll reveal */
@@ -231,8 +328,12 @@
     .sig-mark,
     .navlink::after,
     .rowlink .rowarrow,
+    .live-row .row-underline,
     [data-reveal] {
       transition: none;
+    }
+    .mobile-nav {
+      animation: none;
     }
     .card-tilt:hover,
     .card-tilt:focus-within {
