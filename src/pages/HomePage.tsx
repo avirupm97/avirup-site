@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { SiteFooter } from '../components/layout/SiteFooter'
 import { SiteHeader } from '../components/layout/SiteHeader'
-import { Blogs } from '../components/sections/Blogs'
+// import { Blogs } from '../components/sections/Blogs'
 import { CareerPath } from '../components/sections/CareerPath'
 import { Hero } from '../components/sections/Hero'
 import { WorkDomains } from '../components/sections/WorkDomains'
@@ -16,9 +16,9 @@ export function HomePage() {
       <SiteHeader />
       <main>
         <Hero />
-        <WorkDomains />
         <CareerPath />
-        <Blogs />
+        <WorkDomains />
+        {/* <Blogs /> */}
       </main>
       <SiteFooter />
     </div>

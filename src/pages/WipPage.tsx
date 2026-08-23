@@ -36,7 +36,7 @@ export function WipPage() {
         >
           <Grain />
 
-          <div className="relative z-[4] mx-auto flex min-h-[calc(100vh-var(--header-height))] max-w-[780px] items-center px-6 py-20 md:px-8">
+          <div className="shell-prose relative z-[4] flex min-h-[calc(100vh-var(--header-height))] items-center py-20">
             <div className="relative w-full">
               <PaperCard
                 tilt={-1.2}

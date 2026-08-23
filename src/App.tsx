@@ -6,7 +6,9 @@ import {
   Routes,
   useLocation,
 } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import { ROUTES } from './constants/routes'
+import { CaseStudyPage } from './pages/CaseStudyPage'
 import { HomePage } from './pages/HomePage'
 import { WipPage } from './pages/WipPage'
 
@@ -29,9 +31,15 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <Analytics />
       <Routes>
         <Route path={ROUTES.home} element={<HomePage />} />
         <Route path={ROUTES.wip} element={<WipPage />} />
+        <Route path={ROUTES.caseStudy} element={<CaseStudyPage />} />
+        <Route
+          path={ROUTES.cases}
+          element={<Navigate to={ROUTES.home} replace />}
+        />
         <Route path="*" element={<Navigate to={ROUTES.home} replace />} />
       </Routes>
     </BrowserRouter>

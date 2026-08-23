@@ -66,7 +66,7 @@ export function Blogs() {
       className="relative w-full overflow-hidden py-24 scroll-mt-(--header-height)"
     >
       <Grain />
-      <div className="relative z-[4] mx-auto max-w-[1280px] px-6 md:px-8">
+      <div className="shell relative z-[4]">
         <SectionHeading>{blogSection.title}</SectionHeading>
 
         <div className="mt-14 grid grid-cols-1 items-stretch gap-7 sm:grid-cols-2 lg:grid-cols-4">

@@ -1,4 +1,4 @@
-import { ROUTES } from '../constants/routes'
+import { CASE_SLUGS, ROUTES, casePath } from '../constants/routes'
 import type {
   BlogPost,
   CareerMilestone,
@@ -35,57 +35,68 @@ export const profile = {
 } as const
 
 export const navLinks: NavLink[] = [
-  { label: 'Work', href: '#work' },
   { label: 'Career', href: '#route' },
-  { label: 'Blog', href: '#notes' },
+  { label: 'Work', href: '#work' },
+  // { label: 'Blog', href: '#notes' },
   { label: 'Reach out', href: '#contact', accent: true },
 ]
 
 export const workSection = {
   title: 'My Work',
+  draftingLabel: 'drafting',
 } as const
 
 export const workDomains: WorkDomain[] = [
   {
     id: 'agentic-ai',
     title: 'Agentic AI workflows',
-    description: 'I design how agents ask, decide, and prove they actually worked.',
+    description: 'How agents ask, decide, and prove they actually worked.',
     links: [
-      { label: 'Improve UI agent skill', href: ROUTES.wip },
-      { label: 'Context Graphs', href: ROUTES.wip },
-      { label: 'Design variation skill', href: ROUTES.wip },
+      {
+        label: 'Improve UI agent skill',
+        href: casePath(CASE_SLUGS.improveUi),
+        status: 'live',
+      },
+      {
+        label: 'Context Graphs',
+        href: casePath(CASE_SLUGS.contextGraphs),
+        status: 'live',
+      },
+      {
+        label: 'Improve Design agent skill',
+        href: casePath(CASE_SLUGS.improveDesign),
+        status: 'live',
+      },
     ],
-    tornEdge: 'torn-a',
-    tilt: -1.5,
-    tape: { side: 'left', offset: '26%', rotate: -5 },
   },
   {
     id: 'plg',
-    title: 'PLG & monetization',
+    title: 'PLG work',
     description:
       'Activation, trial conversion, credit economics and retention — measured honestly.',
     links: [
-      { label: 'Subscription cancellation', href: ROUTES.wip },
-      { label: 'Visitor → activation funnel', href: ROUTES.wip },
-      { label: 'Trial conversion', href: ROUTES.wip },
+      {
+        label: 'Subscription cancellation',
+        href: casePath(CASE_SLUGS.reduceSubscriptionCancellation),
+        status: 'live',
+      },
+      {
+        label: 'Visitor → activation',
+        href: casePath(CASE_SLUGS.visitorToActivation),
+        status: 'live',
+      },
+      { label: 'Trial conversion', href: ROUTES.wip, status: 'drafting' },
     ],
-    tornEdge: 'torn-b',
-    tilt: 1.6,
-    tape: { side: 'right', offset: '24%', rotate: 4 },
-    offsetTop: true,
   },
   {
     id: 'product-design',
-    title: 'Product design & AI UX',
+    title: 'Building Platform',
     description:
-      'I turn subjective design intent into structured product surfaces people can steer.',
+      'Reusable, scalable internal frameworks for cross teams to build upon and ship quickly.',
     links: [
-      { label: 'Improve UI agent skill', href: ROUTES.wip },
-      { label: 'Design variation skill', href: ROUTES.wip },
+      { label: 'Insights Engine', href: ROUTES.wip, status: 'drafting' },
+      { label: 'Seller Readiness', href: ROUTES.wip, status: 'drafting' },
     ],
-    tornEdge: 'torn-c',
-    tilt: -0.9,
-    tape: { side: 'left', offset: '32%', rotate: -3 },
   },
 ]
 
@@ -152,7 +163,7 @@ export const careerMilestones: CareerMilestone[] = [
     id: 'readiness-index',
     lines: ['Readiness', 'Index'],
     annotation: {
-      text: '+$650K ACV, new product launch and GTM, tying training to outcomes',
+      text: 'New product launch and GTM, tying training to outcomes',
       left: 522,
       top: 444,
       maxWidth: 215,
@@ -249,6 +260,12 @@ export const blogPosts: BlogPost[] = [
   },
 ]
 
+/** Shared chrome copy for every `/cases/:slug` write-up. */
+export const casePage = {
+  eyebrow: 'Case study',
+  backLabel: 'Back to the site',
+} as const
+
 export const wipPage = {
   eyebrow: 'Work in progress',
   title: 'This one’s still on my desk.',
@@ -261,7 +278,7 @@ export const wipPage = {
 } as const
 
 export const contactSection = {
-  title: "Let's talk about the AI product you're building.",
+  title: "Eager to talk about the product you're building!",
   backToTop: 'Back to top',
 } as const
 

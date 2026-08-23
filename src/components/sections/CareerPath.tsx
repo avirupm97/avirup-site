@@ -9,6 +9,14 @@ import { SectionHeading } from '../ui/SectionHeading'
 
 const { mapSize, connectors } = careerSection
 
+/**
+ * The map is authored in a fixed design space (see `careerSection.mapSize`) but
+ * rendered fluid: every coordinate becomes a percentage of that space, so the
+ * whole drawing scales with the shell instead of sitting at a fixed 1176px.
+ */
+const xPct = (value: number) => `${(value / mapSize.width) * 100}%`
+const yPct = (value: number) => `${(value / mapSize.height) * 100}%`
+
 function blobClasses(current?: boolean) {
   return cx(
     'grid place-items-center px-4 text-center text-[12px] leading-snug font-medium',
@@ -36,8 +44,8 @@ function CareerMap() {
   return (
     <div
       ref={mapRef}
-      className="relative mx-auto mt-16 hidden xl:block"
-      style={{ width: mapSize.width, height: mapSize.height }}
+      className="relative mt-16 hidden w-full xl:block"
+      style={{ aspectRatio: `${mapSize.width} / ${mapSize.height}` }}
     >
       <svg
         className="absolute inset-0 h-full w-full overflow-visible"
@@ -76,10 +84,10 @@ function CareerMap() {
           <div
             className={cx('absolute', blobClasses(milestone.current))}
             style={{
-              left: milestone.box.left,
-              top: milestone.box.top,
-              width: milestone.box.width,
-              height: milestone.box.height,
+              left: xPct(milestone.box.left),
+              top: yPct(milestone.box.top),
+              width: xPct(milestone.box.width),
+              height: yPct(milestone.box.height),
               border: '1.6px solid var(--color-bone)',
               borderRadius: milestone.radius,
             }}
@@ -90,7 +98,10 @@ function CareerMap() {
           {milestone.date && milestone.datePosition ? (
             <span
               className="num absolute text-[11px] text-bone/60"
-              style={milestone.datePosition}
+              style={{
+                left: xPct(milestone.datePosition.left),
+                top: yPct(milestone.datePosition.top),
+              }}
             >
               {milestone.date}
             </span>
@@ -100,9 +111,9 @@ function CareerMap() {
             <span
               className="absolute text-[13px] text-ember-soft italic"
               style={{
-                left: milestone.annotation.left,
-                top: milestone.annotation.top,
-                maxWidth: milestone.annotation.maxWidth,
+                left: xPct(milestone.annotation.left),
+                top: yPct(milestone.annotation.top),
+                maxWidth: xPct(milestone.annotation.maxWidth),
                 transform: `rotate(${milestone.annotation.rotate}deg)`,
               }}
             >
@@ -167,7 +178,7 @@ export function CareerPath() {
       className="relative w-full overflow-hidden bg-ink py-24 text-bone scroll-mt-(--header-height)"
     >
       <Grain opacity={0.1} />
-      <div className="relative z-[4] mx-auto max-w-[1240px] px-6 md:px-8">
+      <div className="shell relative z-[4]">
         <SectionHeading>{careerSection.title}</SectionHeading>
         <p
           data-reveal

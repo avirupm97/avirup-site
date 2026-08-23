@@ -5,6 +5,29 @@ const HAND_DRAWN = {
   strokeLinecap: 'round' as const,
 }
 
+/** Dashed circle marking a work row that is still being written. */
+export function DraftingMark({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width={14}
+      height={14}
+      viewBox="0 0 14 14"
+      aria-hidden="true"
+    >
+      <circle
+        cx="7"
+        cy="7"
+        r="5"
+        fill="none"
+        stroke="currentColor"
+        strokeDasharray="2.4 2"
+        strokeWidth={1.3}
+      />
+    </svg>
+  )
+}
+
 /** Small nudging arrow used at the end of list rows. */
 export function RowArrow() {
   return (
@@ -150,6 +173,34 @@ export function ContactGlyph({ icon }: { icon: ContactIcon }) {
       aria-hidden="true"
     >
       <path d={d} stroke="currentColor" strokeWidth={strokeWidth} {...HAND_DRAWN} />
+    </svg>
+  )
+}
+
+/** Three slightly uneven lines for the mobile menu toggle. */
+export function MenuGlyph() {
+  return (
+    <svg width={24} height={24} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M4 7 Q12 5.5 20 7 M4 12 Q12 13.2 20 12 M4 17 Q12 15.8 20 17"
+        stroke="currentColor"
+        strokeWidth={1.7}
+        {...HAND_DRAWN}
+      />
+    </svg>
+  )
+}
+
+/** Sketch X used while the mobile menu is open. */
+export function CloseGlyph() {
+  return (
+    <svg width={24} height={24} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M6 6 Q12 12 18 18 M18 6 Q12 12 6 18"
+        stroke="currentColor"
+        strokeWidth={1.7}
+        {...HAND_DRAWN}
+      />
     </svg>
   )
 }
