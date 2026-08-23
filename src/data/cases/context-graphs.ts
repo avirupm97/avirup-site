@@ -184,24 +184,6 @@ export const contextGraphs: CaseStudy = {
       ],
     },
     {
-      id: 'tradeoffs',
-      title: 'The tradeoffs',
-      blocks: [
-        {
-          kind: 'paragraph',
-          text: 'Cost was the first one. Indexing a codebase typically consumed around 150 credits, sometimes closer to 200 on larger repos. Because the indexing was foundational to output quality, we chose not to charge it to the user’s account — Kombai absorbed it, and engineering used cheaper models where they were good enough for the job.',
-        },
-        {
-          kind: 'paragraph',
-          text: 'Freshness was the second, and we did not solve it in the beta. Refreshing a Context Graph was user-triggered, which meant the agent could occasionally reason from stale project context. Richer graphs made reuse better and the freshness gap more expensive at the same time.',
-        },
-        {
-          kind: 'paragraph',
-          text: 'Users also wanted more granular control over how graph items should be reused in their specific codebase, which is why we added contextgraph.md — a custom instructions file where teams could teach the agent their own reuse rules.',
-        },
-      ],
-    },
-    {
       id: 'why-this-worked',
       title: 'Why this worked',
       blocks: [
