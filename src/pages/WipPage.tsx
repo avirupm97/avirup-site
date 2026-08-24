@@ -7,6 +7,7 @@ import { Grain } from '../components/ui/Grain'
 import { PaperCard } from '../components/ui/PaperCard'
 import { ROUTES } from '../constants/routes'
 import { contactLinks, wipPage } from '../data/site'
+import posthog from '../posthog'
 import { useDrawPaths } from '../hooks/useDrawPaths'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
@@ -74,6 +75,7 @@ export function WipPage() {
                     <a
                       href={emailLink.href}
                       className="navlink font-medium text-ember"
+                      onClick={() => posthog?.capture('wip_contact_clicked')}
                     >
                       {wipPage.contactLabel}
                     </a>

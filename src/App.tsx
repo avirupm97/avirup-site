@@ -11,6 +11,7 @@ import { ROUTES } from './constants/routes'
 import { CaseStudyPage } from './pages/CaseStudyPage'
 import { HomePage } from './pages/HomePage'
 import { WipPage } from './pages/WipPage'
+import posthog from './posthog'
 
 /**
  * A client-side route change keeps the previous scroll offset, so following a
@@ -27,10 +28,21 @@ function ScrollToTop() {
   return null
 }
 
+function PostHogPageView() {
+  const { pathname, search } = useLocation()
+
+  useEffect(() => {
+    posthog?.capture('$pageview')
+  }, [pathname, search])
+
+  return null
+}
+
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <PostHogPageView />
       <Analytics />
       <Routes>
         <Route path={ROUTES.home} element={<HomePage />} />

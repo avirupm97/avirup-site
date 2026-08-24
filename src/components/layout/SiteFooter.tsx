@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { contactLinks, contactSection, profile } from '../../data/site'
+import posthog from '../../posthog'
 import { useDrawPaths } from '../../hooks/useDrawPaths'
 import { useSectionHref } from '../../hooks/useSectionHref'
 import { ContactGlyph, ReturnArrow } from '../icons/SketchIcons'
@@ -37,6 +38,11 @@ export function SiteFooter() {
                 <a
                   href={link.href}
                   className="navlink inline-flex items-center gap-4"
+                  onClick={() =>
+                    posthog?.capture('contact_link_clicked', {
+                      contact_channel: link.icon,
+                    })
+                  }
                   {...(link.href.startsWith('http')
                     ? { target: '_blank', rel: 'noreferrer noopener' }
                     : {})}

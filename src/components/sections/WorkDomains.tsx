@@ -1,15 +1,23 @@
 import { Link } from 'react-router-dom'
 import { workDomains, workSection } from '../../data/site'
+import posthog from '../../posthog'
 import type { WorkDomain, WorkLink } from '../../types/site'
 import { cx } from '../../utils/cx'
 import { DraftingMark, RowArrow } from '../icons/SketchIcons'
 import { SectionHeading } from '../ui/SectionHeading'
+
+function trackWorkItem(link: WorkLink) {
+  posthog?.capture('work_item_selected', {
+    item_status: link.status,
+  })
+}
 
 function LiveRow({ link }: { link: WorkLink }) {
   return (
     <Link
       to={link.href}
       className="live-row rowlink flex items-center justify-between gap-3 py-3.5 text-ember"
+      onClick={() => trackWorkItem(link)}
     >
       <span className="relative text-ink">
         {link.label}
@@ -25,6 +33,7 @@ function DraftingRow({ link }: { link: WorkLink }) {
     <Link
       to={link.href}
       className="flex items-center justify-between gap-3 py-3.5"
+      onClick={() => trackWorkItem(link)}
     >
       <span className="text-ink-faint">{link.label}</span>
       <span className="flex shrink-0 items-center gap-2">
