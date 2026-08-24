@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { profile } from '../../data/site'
+import posthog from '../../posthog'
 import { useDrawPaths } from '../../hooks/useDrawPaths'
 import { useHeroIntro } from '../../hooks/useHeroIntro'
 import { CtaOutline, SketchUnderline } from '../icons/SketchIcons'
@@ -63,6 +64,9 @@ export function Hero() {
             <a
               href={profile.primaryCta.href}
               className="relative inline-block text-ink"
+              onClick={() =>
+                posthog.capture('hero_cta_clicked', { cta: 'view_selected_work' })
+              }
             >
               <CtaOutline />
               <span
@@ -76,6 +80,9 @@ export function Hero() {
             <a
               href={profile.secondaryCta.href}
               className="relative text-[14px] font-medium"
+              onClick={() =>
+                posthog.capture('hero_cta_clicked', { cta: 'reach_out' })
+              }
             >
               {profile.secondaryCta.label}
               <SketchUnderline />
