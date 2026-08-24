@@ -7,7 +7,7 @@ import { DraftingMark, RowArrow } from '../icons/SketchIcons'
 import { SectionHeading } from '../ui/SectionHeading'
 
 function trackWorkItem(link: WorkLink) {
-  posthog?.capture('work_item_selected', {
+  posthog.capture('work_item_selected', {
     item_status: link.status,
   })
 }

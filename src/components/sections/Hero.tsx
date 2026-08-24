@@ -65,7 +65,7 @@ export function Hero() {
               href={profile.primaryCta.href}
               className="relative inline-block text-ink"
               onClick={() =>
-                posthog?.capture('hero_cta_clicked', { cta: 'view_selected_work' })
+                posthog.capture('hero_cta_clicked', { cta: 'view_selected_work' })
               }
             >
               <CtaOutline />
@@ -81,7 +81,7 @@ export function Hero() {
               href={profile.secondaryCta.href}
               className="relative text-[14px] font-medium"
               onClick={() =>
-                posthog?.capture('hero_cta_clicked', { cta: 'reach_out' })
+                posthog.capture('hero_cta_clicked', { cta: 'reach_out' })
               }
             >
               {profile.secondaryCta.label}

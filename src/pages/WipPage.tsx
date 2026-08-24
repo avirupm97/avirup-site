@@ -75,7 +75,7 @@ export function WipPage() {
                     <a
                       href={emailLink.href}
                       className="navlink font-medium text-ember"
-                      onClick={() => posthog?.capture('wip_contact_clicked')}
+                      onClick={() => posthog.capture('wip_contact_clicked')}
                     >
                       {wipPage.contactLabel}
                     </a>

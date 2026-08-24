@@ -32,7 +32,7 @@ function PostHogPageView() {
   const { pathname, search } = useLocation()
 
   useEffect(() => {
-    posthog?.capture('$pageview')
+    posthog.capture('$pageview')
   }, [pathname, search])
 
   return null

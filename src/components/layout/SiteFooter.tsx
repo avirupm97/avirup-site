@@ -39,7 +39,7 @@ export function SiteFooter() {
                   href={link.href}
                   className="navlink inline-flex items-center gap-4"
                   onClick={() =>
-                    posthog?.capture('contact_link_clicked', {
+                    posthog.capture('contact_link_clicked', {
                       contact_channel: link.icon,
                     })
                   }

@@ -29,4 +29,21 @@ if (shouldInit) {
   })
 }
 
-export default shouldInit ? posthog : undefined
+/**
+ * Only the surface the app actually uses. Derived from posthog's own types so
+ * the stub below cannot drift from the real signature.
+ */
+type Tracker = Pick<typeof posthog, 'capture'>
+
+/**
+ * When PostHog is not initialised (local dev, or missing env vars) we hand back
+ * a no-op instead of `undefined`. Call sites stay non-nullable, so a forgotten
+ * `?.` can't throw in the one environment where nobody would notice.
+ */
+const noopTracker: Tracker = {
+  capture: () => undefined,
+}
+
+const tracker: Tracker = shouldInit ? posthog : noopTracker
+
+export default tracker
