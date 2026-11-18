@@ -2,6 +2,7 @@ import type {
   CareerMilestone,
   ContactLink,
   Launch,
+  LaunchCategory,
   NavLink,
 } from '../types/site'
 
@@ -42,25 +43,30 @@ export const navLinks: NavLink[] = [
 export const workSection = {
   title: 'Launches',
   subtitle: 'Things I’ve shipped at Kombai, straight from the launch posts.',
+  /** segmented tabs, in display order; the first one is selected on load */
+  tabs: [
+    { id: 'agent-skill', label: 'Agent skills' },
+    { id: 'product-surface', label: 'Product surfaces' },
+  ],
   showAllLabel: 'Show all launches',
-  /** how many launches render before the "show all" button */
+  /** how many launches a tab renders before the "show all" button */
   initialCount: 6,
   /** account the launch tweets are posted from; used for fallback links */
   handle: 'Kombaico',
-} as const
+} as const satisfies { tabs: readonly { id: LaunchCategory; label: string }[] }
 
-/** Newest first. Add one as `{ id: 'slug', tweetId: '<number after /status/ in the tweet URL>', product?: 'Name' }`. */
+/** Newest first. Add one as `{ id: 'slug', tweetId: '<number after /status/ in the tweet URL>', category: 'agent-skill', product?: 'Name' }`. */
 export const launches: Launch[] = [
-  { id: 'taste-agent', tweetId: '2122698497040543866', product: 'Taste Agent' },
-  { id: 'codex-plugin', tweetId: '2121219045030818119', product: 'Codex plugin' },
-  { id: 'draw-tools', tweetId: '2090808644300636281', product: 'Draw tools' },
-  { id: 'generate-image', tweetId: '2090453811580264568', product: 'Generate Image skill' },
-  { id: 'animations', tweetId: '2087532054405906915' },
-  { id: 'clone-url', tweetId: '2082458757640986820', product: 'Clone URL skill' },
-  { id: 'design-systems', tweetId: '2080495756671099178', product: 'Design Systems' },
-  { id: 'kombai-desktop', tweetId: '2079921961816269176', product: 'Kombai Desktop' },
-  { id: 'improve-ui', tweetId: '2072296809850945886', product: 'Improve UI skill' },
-  { id: 'inspiration-library', tweetId: '2068023882012086512', product: 'Inspiration Library' },
+  { id: 'taste-agent', tweetId: '2122698497040543866', category: 'product-surface', product: 'Taste Agent' },
+  { id: 'codex-plugin', tweetId: '2121219045030818119', category: 'product-surface', product: 'Codex plugin' },
+  { id: 'draw-tools', tweetId: '2090808644300636281', category: 'product-surface', product: 'Draw tools' },
+  { id: 'generate-image', tweetId: '2090453811580264568', category: 'agent-skill', product: 'Generate Image skill' },
+  { id: 'animations', tweetId: '2087532054405906915', category: 'agent-skill' },
+  { id: 'clone-url', tweetId: '2082458757640986820', category: 'agent-skill', product: 'Clone URL skill' },
+  { id: 'design-systems', tweetId: '2080495756671099178', category: 'product-surface', product: 'Design Systems' },
+  { id: 'kombai-desktop', tweetId: '2079921961816269176', category: 'product-surface', product: 'Kombai Desktop' },
+  { id: 'improve-ui', tweetId: '2072296809850945886', category: 'agent-skill', product: 'Improve UI skill' },
+  { id: 'inspiration-library', tweetId: '2068023882012086512', category: 'product-surface', product: 'Inspiration Library' },
 ]
 
 export const careerSection = {

@@ -16,12 +16,16 @@ export interface TapePlacement {
   rotate: number
 }
 
+/** Which Launches tab a launch is listed under. */
+export type LaunchCategory = 'agent-skill' | 'product-surface'
+
 /** A product launch, shown as its announcement tweet. */
 export interface Launch {
   /** stable key */
   id: string
   /** numeric id from `x.com/<handle>/status/<id>` */
   tweetId: string
+  category: LaunchCategory
   /** optional label shown above the embed */
   product?: string
 }
