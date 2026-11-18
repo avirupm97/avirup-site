@@ -5,50 +5,7 @@ const HAND_DRAWN = {
   strokeLinecap: 'round' as const,
 }
 
-/** Dashed circle marking a work row that is still being written. */
-export function DraftingMark({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width={14}
-      height={14}
-      viewBox="0 0 14 14"
-      aria-hidden="true"
-    >
-      <circle
-        cx="7"
-        cy="7"
-        r="5"
-        fill="none"
-        stroke="currentColor"
-        strokeDasharray="2.4 2"
-        strokeWidth={1.3}
-      />
-    </svg>
-  )
-}
-
-/** Small nudging arrow used at the end of list rows. */
-export function RowArrow() {
-  return (
-    <svg
-      className="rowarrow shrink-0"
-      width={22}
-      height={10}
-      viewBox="0 0 22 10"
-      aria-hidden="true"
-    >
-      <path
-        d="M1 5 Q10 1 19 5 M19 5 L14 2 M19 5 L14 8"
-        stroke="currentColor"
-        strokeWidth={1.6}
-        {...HAND_DRAWN}
-      />
-    </svg>
-  )
-}
-
-/** Larger version of the nudging arrow, used on cards. */
+/** Nudging arrow used on cards and links. */
 export function CardArrow() {
   return (
     <svg
