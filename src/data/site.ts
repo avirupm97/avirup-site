@@ -40,20 +40,22 @@ export const navLinks: NavLink[] = [
   { label: 'Reach out', href: '#contact', accent: true },
 ]
 
+/** segmented tabs, in display order; the first one is selected on load */
+const launchTabs = [
+  { id: 'agent-skill', label: 'Agent skills' },
+  { id: 'product-surface', label: 'Product surfaces' },
+] as const satisfies readonly { id: LaunchCategory; label: string }[]
+
 export const workSection = {
   title: 'Launches',
   subtitle: 'Things I’ve shipped at Kombai, straight from the launch posts.',
-  /** segmented tabs, in display order; the first one is selected on load */
-  tabs: [
-    { id: 'agent-skill', label: 'Agent skills' },
-    { id: 'product-surface', label: 'Product surfaces' },
-  ],
+  tabs: launchTabs,
   showAllLabel: 'Show all launches',
   /** how many launches a tab renders before the "show all" button */
   initialCount: 6,
   /** account the launch tweets are posted from; used for fallback links */
   handle: 'Kombaico',
-} as const satisfies { tabs: readonly { id: LaunchCategory; label: string }[] }
+} as const
 
 /** Newest first. Add one as `{ id: 'slug', tweetId: '<number after /status/ in the tweet URL>', category: 'agent-skill', product?: 'Name' }`. */
 export const launches: Launch[] = [
