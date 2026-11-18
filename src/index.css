@@ -238,23 +238,6 @@
     transition: transform 0.3s ease;
   }
 
-  /* live work-row: ink underline wipes in from the left */
-  .live-row .row-underline {
-    position: absolute;
-    right: 0;
-    bottom: -2px;
-    left: 0;
-    height: 1px;
-    background: var(--color-ink);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.28s ease;
-  }
-  .live-row:hover .row-underline,
-  .live-row:focus-visible .row-underline {
-    transform: scaleX(1);
-  }
-
   /* full-bleed mobile menu that sits under the sticky header */
   .mobile-nav {
     animation: mobile-nav-in 0.28s ease;
@@ -328,7 +311,6 @@
     .sig-mark,
     .navlink::after,
     .rowlink .rowarrow,
-    .live-row .row-underline,
     [data-reveal] {
       transition: none;
     }
@@ -340,4 +322,34 @@
       transform: rotate(var(--tilt));
     }
   }
+}
+
+/* ------------------------------------------------------------------ *
+ * react-tweet embeds (Launches), restyled as paper
+ *
+ * Unlayered on purpose: react-tweet ships unlayered CSS, which beats
+ * anything inside `@layer components` regardless of specificity. Two
+ * classes then outrank its `[data-theme='light'] :where(...)` tokens
+ * and its `.root` module styles.
+ * ------------------------------------------------------------------ */
+.launch-embeds .react-tweet-theme {
+  --tweet-container-margin: 0;
+  --tweet-font-family: var(--font-sans);
+  --tweet-font-color: var(--color-ink);
+  --tweet-font-color-secondary: var(--color-ink-muted);
+  --tweet-bg-color: var(--color-paper);
+  --tweet-bg-color-hover: var(--color-paper);
+  --tweet-border: 1px solid rgba(20, 20, 19, 0.12);
+  --tweet-skeleton-gradient: linear-gradient(
+    270deg,
+    var(--color-paper),
+    var(--color-bone),
+    var(--color-bone),
+    var(--color-paper)
+  );
+  --tweet-body-font-size: 1rem;
+  --tweet-body-line-height: 1.55rem;
+  max-width: none;
+  border-radius: 4px;
+  box-shadow: var(--shadow-paper);
 }

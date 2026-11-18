@@ -5,14 +5,6 @@ export interface NavLink {
   accent?: boolean
 }
 
-export type WorkLinkStatus = 'live' | 'drafting'
-
-export interface WorkLink {
-  label: string
-  href: string
-  status: WorkLinkStatus
-}
-
 export type TornEdge = 'torn-a' | 'torn-b' | 'torn-c'
 
 export interface TapePlacement {
@@ -24,11 +16,18 @@ export interface TapePlacement {
   rotate: number
 }
 
-export interface WorkDomain {
+/** Which Launches tab a launch is listed under. */
+export type LaunchCategory = 'agent-skill' | 'product-surface'
+
+/** A product launch, shown as its announcement tweet. */
+export interface Launch {
+  /** stable key */
   id: string
-  title: string
-  description: string
-  links: WorkLink[]
+  /** numeric id from `x.com/<handle>/status/<id>` */
+  tweetId: string
+  category: LaunchCategory
+  /** optional label shown above the embed */
+  product?: string
 }
 
 export interface CareerAnnotation {
@@ -56,19 +55,6 @@ export interface CareerMilestone {
    * renders fluid, so these are converted to percentages at render time.
    */
   box: { left: number; top: number; width: number; height: number }
-}
-
-export type BlogStatus = 'Published' | 'Drafting'
-
-export interface BlogPost {
-  id: string
-  tag: string
-  title: string
-  excerpt: string
-  status: BlogStatus
-  href: string
-  tilt: number
-  tape: TapePlacement
 }
 
 export type ContactIcon = 'mail' | 'linkedin' | 'x'

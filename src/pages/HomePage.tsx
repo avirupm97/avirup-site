@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 import { SiteFooter } from '../components/layout/SiteFooter'
 import { SiteHeader } from '../components/layout/SiteHeader'
-// import { Blogs } from '../components/sections/Blogs'
+import { Blogs } from '../components/sections/Blogs'
 import { CareerPath } from '../components/sections/CareerPath'
 import { Hero } from '../components/sections/Hero'
-import { WorkDomains } from '../components/sections/WorkDomains'
+import { Launches } from '../components/sections/Launches'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 export function HomePage() {
@@ -17,8 +17,8 @@ export function HomePage() {
       <main>
         <Hero />
         <CareerPath />
-        <WorkDomains />
-        {/* <Blogs /> */}
+        <Launches />
+        <Blogs />
       </main>
       <SiteFooter />
     </div>

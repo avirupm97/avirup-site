@@ -1,10 +1,9 @@
-import { CASE_SLUGS, ROUTES, casePath } from '../constants/routes'
 import type {
-  BlogPost,
   CareerMilestone,
   ContactLink,
+  Launch,
+  LaunchCategory,
   NavLink,
-  WorkDomain,
 } from '../types/site'
 
 export const profile = {
@@ -37,67 +36,37 @@ export const profile = {
 export const navLinks: NavLink[] = [
   { label: 'Career', href: '#route' },
   { label: 'Work', href: '#work' },
-  // { label: 'Blog', href: '#notes' },
+  { label: 'Blog', href: '#notes' },
   { label: 'Reach out', href: '#contact', accent: true },
 ]
 
 export const workSection = {
-  title: 'My Work',
-  draftingLabel: 'drafting',
-} as const
+  title: 'Launches',
+  subtitle: 'Things I’ve shipped at Kombai, straight from the launch posts.',
+  /** segmented tabs, in display order; the first one is selected on load */
+  tabs: [
+    { id: 'agent-skill', label: 'Agent skills' },
+    { id: 'product-surface', label: 'Product surfaces' },
+  ],
+  showAllLabel: 'Show all launches',
+  /** how many launches a tab renders before the "show all" button */
+  initialCount: 6,
+  /** account the launch tweets are posted from; used for fallback links */
+  handle: 'Kombaico',
+} as const satisfies { tabs: readonly { id: LaunchCategory; label: string }[] }
 
-export const workDomains: WorkDomain[] = [
-  {
-    id: 'agentic-ai',
-    title: 'Agentic AI workflows',
-    description: 'How agents ask, decide, and prove they actually worked.',
-    links: [
-      {
-        label: 'Improve UI agent skill',
-        href: casePath(CASE_SLUGS.improveUi),
-        status: 'live',
-      },
-      {
-        label: 'Context Graphs',
-        href: casePath(CASE_SLUGS.contextGraphs),
-        status: 'live',
-      },
-      {
-        label: 'Improve Design agent skill',
-        href: casePath(CASE_SLUGS.improveDesign),
-        status: 'live',
-      },
-    ],
-  },
-  {
-    id: 'plg',
-    title: 'PLG work',
-    description:
-      'Activation, trial conversion, credit economics and retention — measured honestly.',
-    links: [
-      {
-        label: 'Subscription cancellation',
-        href: casePath(CASE_SLUGS.reduceSubscriptionCancellation),
-        status: 'live',
-      },
-      {
-        label: 'Visitor → activation',
-        href: casePath(CASE_SLUGS.visitorToActivation),
-        status: 'live',
-      },
-      { label: 'Trial conversion', href: ROUTES.wip, status: 'drafting' },
-    ],
-  },
-  {
-    id: 'product-design',
-    title: 'Building Platform',
-    description:
-      'Reusable, scalable internal frameworks for cross teams to build upon and ship quickly.',
-    links: [
-      { label: 'Insights Engine', href: ROUTES.wip, status: 'drafting' },
-      { label: 'Seller Readiness', href: ROUTES.wip, status: 'drafting' },
-    ],
-  },
+/** Newest first. Add one as `{ id: 'slug', tweetId: '<number after /status/ in the tweet URL>', category: 'agent-skill', product?: 'Name' }`. */
+export const launches: Launch[] = [
+  { id: 'taste-agent', tweetId: '2122698497040543866', category: 'product-surface', product: 'Taste Agent' },
+  { id: 'codex-plugin', tweetId: '2121219045030818119', category: 'product-surface', product: 'Codex plugin' },
+  { id: 'draw-tools', tweetId: '2090808644300636281', category: 'product-surface', product: 'Draw tools' },
+  { id: 'generate-image', tweetId: '2090453811580264568', category: 'agent-skill', product: 'Generate Image skill' },
+  { id: 'animations', tweetId: '2087532054405906915', category: 'agent-skill' },
+  { id: 'clone-url', tweetId: '2082458757640986820', category: 'agent-skill', product: 'Clone URL skill' },
+  { id: 'design-systems', tweetId: '2080495756671099178', category: 'product-surface', product: 'Design Systems' },
+  { id: 'kombai-desktop', tweetId: '2079921961816269176', category: 'product-surface', product: 'Kombai Desktop' },
+  { id: 'improve-ui', tweetId: '2072296809850945886', category: 'agent-skill', product: 'Improve UI skill' },
+  { id: 'inspiration-library', tweetId: '2068023882012086512', category: 'product-surface', product: 'Inspiration Library' },
 ]
 
 export const careerSection = {
@@ -212,53 +181,6 @@ export const careerMilestones: CareerMilestone[] = [
 export const blogSection = {
   title: 'Blogs',
 } as const
-
-export const blogPosts: BlogPost[] = [
-  {
-    id: 'evals',
-    tag: 'Evals',
-    title: 'How I build, evaluate and measure AI products',
-    excerpt:
-      "The eval you can run in an afternoon beats the dashboard you'll ship next quarter.",
-    status: 'Published',
-    href: ROUTES.wip,
-    tilt: -0.7,
-    tape: { side: 'left', offset: '18%', rotate: -4 },
-  },
-  {
-    id: 'credit-economics',
-    tag: 'Credit economics',
-    title: 'Why credit economics is a retention problem, not a pricing problem',
-    excerpt:
-      "People don't cancel because it costs too much. They cancel because week three is empty.",
-    status: 'Drafting',
-    href: ROUTES.wip,
-    tilt: 0.8,
-    tape: { side: 'right', offset: '20%', rotate: 4 },
-  },
-  {
-    id: 'agent-ux',
-    tag: 'Agent UX',
-    title: 'What “make it beautiful” taught me about structuring vague intent',
-    excerpt:
-      'Give people dials, not a blank prompt — then let the agent argue for a direction.',
-    status: 'Drafting',
-    href: ROUTES.wip,
-    tilt: -0.5,
-    tape: { side: 'left', offset: '24%', rotate: -3 },
-  },
-  {
-    id: 'invisible-infrastructure',
-    tag: 'Product judgement',
-    title: 'Keeping infrastructure invisible: when the best AI surface is no surface',
-    excerpt:
-      'Nobody wants to manage a graph. They want the agent to already know.',
-    status: 'Drafting',
-    href: ROUTES.wip,
-    tilt: 1,
-    tape: { side: 'right', offset: '16%', rotate: 5 },
-  },
-]
 
 /** Shared chrome copy for every `/cases/:slug` write-up. */
 export const casePage = {
